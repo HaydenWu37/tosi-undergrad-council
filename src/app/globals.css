@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+/*
+ * ────────────────────────────────────────────────────────────────
+ *  DESIGN TOKENS  —  change the brand here and it updates sitewide.
+ *  Palette, pulled from the council's own photos: deep "ink" navy
+ *  (the navy jackets), "brand" blue (event screens and table linens),
+ *  warm "paper" (journal pages), and an autumn / Neuro orange "signal"
+ *  accent used sparingly for emphasis.
+ * ────────────────────────────────────────────────────────────────
+ */
+@theme {
+  /* Deep indigo: text and dark sections */
+  --color-ink-950: #1a1040;
+  --color-ink-900: #261a5a;
+  --color-ink-800: #33267a;
+  --color-ink-700: #4a3f78;
+  --color-ink-600: #5d5388;
+  --color-ink-500: #7b71a3;
+  --color-ink-400: #a9a1cc;
+
+  /* Soft lavender paper */
+  --color-paper-50: #fcfaff;
+  --color-paper-100: #f4eefb;
+  --color-paper-200: #e8ddf4;
+  --color-paper-300: #d5c6e9;
+
+  /* Brand purple (the posts' title purple) */
+  --color-brand-50: #f3ecfb;
+  --color-brand-100: #e6d8f5;
+  --color-brand-200: #d0b8ec;
+  --color-brand-300: #b393de;
+  --color-brand-400: #9870cf;
+  --color-brand-500: #7f52bd;
+  --color-brand-600: #6a3fa8;
+  --color-brand-700: #56308f;
+  --color-brand-800: #442673;
+  --color-brand-900: #341c5a;
+
+  /* Sunny yellow accent (the posts' sparkles) */
+  --color-signal-100: #fdf1c4;
+  --color-signal-300: #f9dd7a;
+  --color-signal-400: #f5c93d;
+  --color-signal-500: #e9b420;
+  --color-signal-700: #7a5a00;
+
+  /* Periwinkle / sky blue (banners, notebook covers) */
+  --color-sky-50: #eaf5fd;
+  --color-sky-100: #d3e9f9;
+  --color-sky-300: #93bde3;
+  --color-sky-500: #4a86d1;
+  --color-sky-700: #2a5fa8;
+
+  /* Mint / aqua (the arch and atom circles) */
+  --color-mint-100: #d4eef1;
+  --color-mint-300: #9ed8e0;
+  --color-mint-600: #2f8f9c;
+  --color-mint-800: #1f6470;
+
+  --color-iris-100: #e6d8f5;
+  --color-iris-700: #442673;
+  --color-rose-100: #fbe1ea;
+  --color-rose-700: #a12c58;
+
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-nunito), ui-rounded, system-ui, sans-serif;
+  --font-hand: var(--font-caveat), "Segoe Script", cursive;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --shadow-soft: 0 1px 2px rgb(38 26 90 / 0.05), 0 8px 24px -8px rgb(38 26 90 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(38 26 90 / 0.07), 0 18px 40px -12px rgb(38 26 90 / 0.26);
+}
+
+:root {
+  color-scheme: light;
+  --nav-height: 4.25rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 1rem);
+}
+
+body {
+  background: var(--color-paper-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 560;
+  letter-spacing: -0.018em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--color-brand-200);
+  color: var(--color-ink-950);
+}
+
+/* Visible, consistent keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.on-dark :focus-visible {
+  outline-color: var(--color-signal-300);
+}
+
+/* ── Utilities ─────────────────────────────────────────────── */
+
+/* Microscopy-inspired dot grid */
+.bg-dots {
+  background-image: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--color-ink-900) 16%, transparent) 1px,
+    transparent 1.5px
+  );
+  background-size: 22px 22px;
+}
+.bg-dots-light {
+  background-image: radial-gradient(
+    circle at center,
+    rgb(255 255 255 / 0.16) 1px,
+    transparent 1.5px
+  );
+  background-size: 22px 22px;
+}
+
+/* Handwritten accent, like the notes on the Instagram posts */
+.font-hand {
+  font-family: var(--font-hand);
+  letter-spacing: 0;
+}
+
+/* Scientific-figure label */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ── Motion ────────────────────────────────────────────────── */
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.page-enter {
+  animation: page-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal {
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal[data-state="hidden"] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+@keyframes pulse-node {
+  0%,
+  100% {
+    opacity: 0.35;
+    r: 2.4;
+  }
+  50% {
+    opacity: 1;
+    r: 4;
+  }
+}
+.node-pulse {
+  animation: pulse-node 5.5s ease-in-out infinite;
+}
+
+@keyframes signal-travel {
+  from {
+    stroke-dashoffset: 120;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.edge-signal {
+  stroke-dasharray: 6 114;
+  animation: signal-travel 7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .page-enter,
+  .node-pulse,
+  .edge-signal {
+    animation: none;
+  }
+  .reveal,
+  .reveal[data-state="hidden"] {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
