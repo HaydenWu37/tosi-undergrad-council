@@ -21,10 +21,10 @@ const iconBox =
 export default function ContactPage() {
   return (
     <>
-      <PageHero eyebrow="Contact" title="Say hello." seed={52}>
+      <PageHero eyebrow="Contact" title="Say hello." seed={52} scene="dna">
         Questions, ideas, or want to get involved? Send us a message.
       </PageHero>
-      <Section labelledBy="contact-heading">
+      <Section labelledBy="contact-heading" className="bg-paper-50">
         <Container>
           <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
             <div id="form">
@@ -42,7 +42,7 @@ export default function ContactPage() {
                   <a href={`mailto:${site.email}`} className={row}>
                     <span className={iconBox}><Mail className="h-5 w-5" aria-hidden="true" /></span>
                     <span className="min-w-0">
-                      <span className="eyebrow flex items-center gap-2 text-[0.68rem] text-ink-600">
+                      <span className="eyebrow flex items-center gap-2 text-ink-600">
                         Email {site.showPlaceholderNotices && <PlaceholderTag />}
                       </span>
                       <span className="block break-all font-medium text-ink-950">{site.email}</span>
@@ -53,7 +53,7 @@ export default function ContactPage() {
                   <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className={row}>
                     <span className={iconBox}><InstagramIcon className="h-5 w-5" /></span>
                     <span>
-                      <span className="eyebrow block text-[0.68rem] text-ink-600">Instagram</span>
+                      <span className="eyebrow block text-ink-600">Instagram</span>
                       <span className="font-medium text-ink-950">
                         {site.instagram.handle}
                         <span className="sr-only"> (opens in a new tab)</span>

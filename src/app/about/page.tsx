@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { CommunityDiagram } from "@/components/graphics/CommunityDiagram";
 import { Container, Section } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -18,11 +17,11 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHero eyebrow="About" title="Neuroscience, research, and community, together." seed={4}>
+      <PageHero eyebrow="About" title="Open science, research, and community, together." seed={4} scene="dna">
         {site.affiliationLine}. The Undergraduate Council makes that community open to students.
       </PageHero>
 
-      <Section labelledBy="what-heading">
+      <Section labelledBy="what-heading" className="bg-paper-50">
         <Container>
           <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
             <Reveal className="space-y-12">
@@ -30,7 +29,7 @@ export default function AboutPage() {
                 <h2 id="what-heading" className="text-3xl text-ink-950 sm:text-4xl">What is TOSI?</h2>
                 <p className="mt-4 text-lg text-ink-700">{intro.what}</p>
                 <p className="mt-3 text-sm text-ink-600">
-                  {site.fullName}. Focus areas: neuroscience, research, education, and community.
+                  {site.fullName}. Focus areas: open science, research, education, and community.
                 </p>
               </div>
               <div>
@@ -39,7 +38,13 @@ export default function AboutPage() {
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <CommunityDiagram />
+              <div className="glass eyebrow rounded-3xl border border-white/70 p-8 text-center text-ink-700 shadow-soft" aria-label="The Undergraduate Council sits inside TOSI trainees, inside the wider TOSI community">
+                <p>TOSI community</p>
+                <p aria-hidden="true" className="my-3 text-ink-600">↓ contains</p>
+                <p>TOSI trainees</p>
+                <p aria-hidden="true" className="my-3 text-ink-600">↓ contains</p>
+                <p className="rounded-full bg-signal-500 px-4 py-3 text-white shadow-soft">Undergraduate Council</p>
+              </div>
             </Reveal>
           </div>
         </Container>
@@ -47,7 +52,7 @@ export default function AboutPage() {
 
       <MissionSection />
 
-      <Section labelledBy="goals-heading">
+      <Section labelledBy="goals-heading" className="bg-paper-100">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
             <Reveal>
@@ -56,7 +61,7 @@ export default function AboutPage() {
             <ul className="divide-y divide-paper-300 border-y border-paper-300">
               {goals.map((g, i) => (
                 <Reveal as="li" key={g} delay={i * 60} className="flex gap-4 py-5">
-                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700">
+                  <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-signal-400 text-white">
                     <Check className="h-3.5 w-3.5" aria-hidden="true" />
                   </span>
                   <span className="text-lg text-ink-800">{g}</span>
@@ -76,7 +81,7 @@ export default function AboutPage() {
           </Reveal>
           <ul className="mt-10 grid gap-5 sm:grid-cols-2">
             {whatWeDo.map((w, i) => (
-              <Reveal as="li" key={w.title} delay={i * 70} className="rounded-2xl border border-paper-300 bg-white p-6">
+              <Reveal as="li" key={w.title} delay={i * 70} className="glass rounded-3xl border border-white/70 p-6 shadow-soft">
                 <h3 className="text-xl text-ink-950">{w.title}</h3>
                 <p className="mt-2 text-ink-600">{w.text}</p>
               </Reveal>

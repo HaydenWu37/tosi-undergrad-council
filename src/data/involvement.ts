@@ -33,8 +33,8 @@ export const pathways: Pathway[] = [
     id: "journal-club",
     title: "Join Journal Club",
     description: "Hear speakers present their research and open science practices each month.",
-    cta: "See Journal Club",
-    href: "/events/journal-club",
+    cta: "See our events",
+    href: "/events",
     icon: "book",
   },
   {
@@ -42,7 +42,7 @@ export const pathways: Pathway[] = [
     title: "Present your research",
     description: "Share your research or open science practices at Journal Club.",
     cta: "Offer to present",
-    href: "/events/journal-club#present",
+    href: "/contact?topic=present",
     icon: "presentation",
   },
   {

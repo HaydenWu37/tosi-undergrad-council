@@ -2,78 +2,105 @@
 
 /*
  * ────────────────────────────────────────────────────────────────
- *  DESIGN TOKENS  —  change the brand here and it updates sitewide.
- *  Palette, pulled from the council's own photos: deep "ink" navy
- *  (the navy jackets), "brand" blue (event screens and table linens),
- *  warm "paper" (journal pages), and an autumn / Neuro orange "signal"
- *  accent used sparingly for emphasis.
+ *  DESIGN TOKENS — ETHEREAL / CELESTIAL EDITORIAL
+ *  Cloud-white and porcelain canvas, soft warm graphite text (not cool
+ *  near-black), a clear azure as the hero accent, with a wider
+ *  atmospheric palette — mist blue, lavender haze, blush, sage,
+ *  champagne — used as section-tint washes so the page shifts tone as
+ *  you scroll instead of staying flat white throughout. Shadows are
+ *  large, soft, and tinted ("feathered") rather than dark and tight.
+ *  Cormorant Garamond (editorial display serif) + Manrope (restrained
+ *  sans) replace the previous pairing for a more fashion-editorial voice.
  * ────────────────────────────────────────────────────────────────
  */
 @theme {
-  /* Deep indigo: text and dark sections */
-  --color-ink-950: #1a1040;
-  --color-ink-900: #261a5a;
-  --color-ink-800: #33267a;
-  --color-ink-700: #4a3f78;
-  --color-ink-600: #5d5388;
-  --color-ink-500: #7b71a3;
-  --color-ink-400: #a9a1cc;
+  /* Soft warm graphite, not cool slate — the brief's "#49464D" family. */
+  --color-ink-950: #231f29;
+  --color-ink-900: #322d38;
+  --color-ink-800: #423c49;
+  --color-ink-700: #524b59;
+  --color-ink-600: #6b6372;
+  --color-ink-500: #8a8390;
+  --color-ink-400: #aca6b1;
 
-  /* Soft lavender paper */
-  --color-paper-50: #fcfaff;
-  --color-paper-100: #f4eefb;
-  --color-paper-200: #e8ddf4;
-  --color-paper-300: #d5c6e9;
+  --color-paper-50: #faf9f7;
+  --color-paper-100: #f3f0ee;
+  --color-paper-200: #e7e2de;
+  --color-paper-300: rgba(73, 70, 77, 0.09);
 
-  /* Brand purple (the posts' title purple) */
-  --color-brand-50: #f3ecfb;
-  --color-brand-100: #e6d8f5;
-  --color-brand-200: #d0b8ec;
-  --color-brand-300: #b393de;
-  --color-brand-400: #9870cf;
-  --color-brand-500: #7f52bd;
-  --color-brand-600: #6a3fa8;
-  --color-brand-700: #56308f;
-  --color-brand-800: #442673;
-  --color-brand-900: #341c5a;
+  /* Deep-space navy — a distinct cooler, darker register from --color-ink
+     (which stays warm graphite everywhere else), reserved for the one
+     cinematic "look into the network" moment: the home hero. Not a dark
+     mode, a deliberate single dark showcase panel. */
+  --color-void-950: #05070f;
+  --color-void-900: #0a0e1c;
+  --color-void-800: #121a2e;
 
-  /* Sunny yellow accent (the posts' sparkles) */
-  --color-signal-100: #fdf1c4;
-  --color-signal-300: #f9dd7a;
-  --color-signal-400: #f5c93d;
-  --color-signal-500: #e9b420;
-  --color-signal-700: #7a5a00;
+  /* Secondary spectral accent: indigo — a cooler, quieter companion to
+     the azure hero accent, not a second hero color. */
+  --color-brand-50: #eef0fe;
+  --color-brand-100: #e0e3fd;
+  --color-brand-200: #c7cbfb;
+  --color-brand-300: #a5abf7;
+  --color-brand-400: #818cf2;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #372fa8;
+  --color-brand-900: #2c2689;
 
-  /* Periwinkle / sky blue (banners, notebook covers) */
-  --color-sky-50: #eaf5fd;
-  --color-sky-100: #d3e9f9;
-  --color-sky-300: #93bde3;
-  --color-sky-500: #4a86d1;
-  --color-sky-700: #2a5fa8;
+  /* Hero accent: clear ethereal azure. */
+  --color-signal-100: #dbeafe;
+  --color-signal-300: #60a5fa;
+  --color-signal-400: #3b82f6;
+  --color-signal-500: #2563eb;
+  --color-signal-700: #1d4ed8;
 
-  /* Mint / aqua (the arch and atom circles) */
-  --color-mint-100: #d4eef1;
-  --color-mint-300: #9ed8e0;
-  --color-mint-600: #2f8f9c;
-  --color-mint-800: #1f6470;
+  /* Spectral accent: luminescent cyan — Journal Club. */
+  --color-rose-100: #cffafe;
+  --color-rose-700: #0e7490;
 
-  --color-iris-100: #e6d8f5;
-  --color-iris-700: #442673;
-  --color-rose-100: #fbe1ea;
-  --color-rose-700: #a12c58;
+  /* Spectral accent: spectrum gold — Workshops / featured rails. A single
+     deliberate warm note against an otherwise cool-pastel page. */
+  --color-gold-100: #fef3c7;
+  --color-gold-400: #f59e0b;
+  --color-gold-700: #b45309;
 
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-nunito), ui-rounded, system-ui, sans-serif;
-  --font-hand: var(--font-caveat), "Segoe Script", cursive;
+  /* Atmospheric wash tones — used as whole-section tint backgrounds (not
+     small UI chips) so the page shifts mood tonally section to section,
+     the way light shifts across a sky, instead of staying flat white. */
+  --color-mist: #dce7f0;
+  --color-celestial: #c7d9e8;
+  --color-haze: #e8e0f0;
+  --color-blush: #f2e3e4;
+  --color-sage: #dce3da;
+  --color-champagne: #e9dfce;
+
+  --font-display: var(--font-serif), "Cormorant Garamond", Garamond, Georgia, serif;
+  --font-sans: var(--font-sans-ui), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
 
-  --shadow-soft: 0 1px 2px rgb(38 26 90 / 0.05), 0 8px 24px -8px rgb(38 26 90 / 0.14);
-  --shadow-lift: 0 2px 4px rgb(38 26 90 / 0.07), 0 18px 40px -12px rgb(38 26 90 / 0.26);
+  /* Feathered — large, soft, tinted rather than dark and tight. */
+  --shadow-soft: 0 8px 32px rgba(73, 70, 77, 0.07);
+  --shadow-lift: 0 24px 64px rgba(73, 70, 77, 0.16);
+  /* "Lit from within" — a mystical glow halo, for the hero CTA and a few
+     deliberately-chosen focal elements. Not for every card (that would
+     stop reading as light and start reading as noise). */
+  --shadow-glow: 0 0 1px rgba(37, 99, 235, 0.4), 0 0 32px rgba(37, 99, 235, 0.35), 0 12px 36px rgba(29, 78, 216, 0.22);
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.125rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-4xl: 2.5rem;
 }
 
 :root {
   color-scheme: light;
-  --nav-height: 4.25rem;
+  --nav-height: 4.5rem;
 }
 
 html {
@@ -83,7 +110,7 @@ html {
 
 body {
   background: var(--color-paper-50);
-  color: var(--color-ink-900);
+  color: var(--color-ink-950);
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.65;
@@ -96,10 +123,18 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 560;
-  letter-spacing: -0.018em;
-  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.15;
   text-wrap: balance;
+}
+
+h1 em,
+h2 em,
+h3 em,
+blockquote em {
+  font-style: italic;
+  color: var(--color-signal-500);
 }
 
 p {
@@ -107,61 +142,73 @@ p {
 }
 
 ::selection {
-  background: var(--color-brand-200);
-  color: var(--color-ink-950);
+  background: var(--color-signal-400);
+  color: #ffffff;
 }
 
 /* Visible, consistent keyboard focus everywhere */
 :focus-visible {
-  outline: 2px solid var(--color-brand-500);
+  outline: 2px solid var(--color-signal-400);
   outline-offset: 3px;
-  border-radius: 4px;
-}
-.on-dark :focus-visible {
-  outline-color: var(--color-signal-300);
+  border-radius: 2px;
 }
 
-/* ── Utilities ─────────────────────────────────────────────── */
-
-/* Microscopy-inspired dot grid */
-.bg-dots {
-  background-image: radial-gradient(
-    circle at center,
-    color-mix(in srgb, var(--color-ink-900) 16%, transparent) 1px,
-    transparent 1.5px
-  );
-  background-size: 22px 22px;
-}
-.bg-dots-light {
-  background-image: radial-gradient(
-    circle at center,
-    rgb(255 255 255 / 0.16) 1px,
-    transparent 1.5px
-  );
-  background-size: 22px 22px;
-}
-
-/* Handwritten accent, like the notes on the Instagram posts */
-.font-hand {
-  font-family: var(--font-hand);
-  letter-spacing: 0;
-}
-
-/* Scientific-figure label */
+/* Micro-telemetry: nav items, eyebrows, metadata, tags. Two sizes only —
+   `.eyebrow` for nearly everything, `.eyebrow-sm` for the handful of
+   genuinely-tiny contexts (nav subtitle, date sub-captions). Previously
+   five different arbitrary sizes did this same job across components. */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+.eyebrow-sm {
+  font-size: 0.625rem;
+}
 
-/* ── Motion ────────────────────────────────────────────────── */
+/* Moonlit glow behind a headline — the one typographic "mystical" touch,
+   reserved for page-hero h1s. Pure text-shadow, so it only ever adds a soft
+   halo around the glyph; the glyph's own ink color (and its contrast) is
+   untouched. */
+.glow-text {
+  text-shadow:
+    0 0 36px rgba(37, 99, 235, 0.25),
+    0 0 90px rgba(129, 140, 242, 0.16);
+}
+
+/* Fine paper grain — keeps the soft atmospheric gradients from reading as
+   flat, sterile digital color. A single inline SVG turbulence filter,
+   tiled; `soft-light` blend so it only ever gently modulates what's
+   beneath it, never adds flat grey. Applied once, full-viewport, in
+   AmbientField — not per-component. */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: soft-light;
+}
+
+/* Frosted-glass surface, used on nav and cards. No border here on purpose —
+   border color/width is set per call site via Tailwind utilities (e.g. a
+   colored top rail), and this file's rules are unlayered so they'd beat
+   Tailwind's `@layer utilities` and silently override any border added
+   alongside this class, regardless of source order. */
+.glass {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.on-dark .glass {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Motion ────────────────────────────────────────────────────── */
 
 @keyframes page-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -169,55 +216,25 @@ p {
   }
 }
 .page-enter {
-  animation: page-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: page-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .reveal {
   transition:
-    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
 .reveal[data-state="hidden"] {
   opacity: 0;
-  transform: translateY(18px);
-}
-
-@keyframes pulse-node {
-  0%,
-  100% {
-    opacity: 0.35;
-    r: 2.4;
-  }
-  50% {
-    opacity: 1;
-    r: 4;
-  }
-}
-.node-pulse {
-  animation: pulse-node 5.5s ease-in-out infinite;
-}
-
-@keyframes signal-travel {
-  from {
-    stroke-dashoffset: 120;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-.edge-signal {
-  stroke-dasharray: 6 114;
-  animation: signal-travel 7s linear infinite;
+  transform: translateY(16px);
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .page-enter,
-  .node-pulse,
-  .edge-signal {
+  .page-enter {
     animation: none;
   }
   .reveal,

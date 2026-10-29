@@ -24,9 +24,9 @@ export function InstagramSection() {
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
           <Reveal>
-            <SectionHeader eyebrow="Stay connected" title="Follow TOSI on Instagram">
-              Announcements, event recaps, and community highlights are shared first on our
-              Instagram.
+            <SectionHeader eyebrow="Stay in the loop" title="Follow TOSI on Instagram">
+              This is where we post what&rsquo;s coming up next — Instagram is the fastest way to
+              hear about our next event before it happens.
             </SectionHeader>
             <div className="mt-8">
               <Button href={site.instagram.url} size="lg">
@@ -40,7 +40,7 @@ export function InstagramSection() {
               href={site.instagram.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block rounded-3xl border border-paper-300 bg-white p-6 shadow-soft transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-8"
+              className="group block rounded-3xl border border-paper-300 bg-white p-6 shadow-soft transition-[box-shadow,transform] duration-200 hover:-translate-y-1 hover:shadow-lift sm:p-8"
             >
               <span className="sr-only">Open {site.instagram.handle} on Instagram (opens in a new tab)</span>
               <div className="flex items-center gap-4" aria-hidden="true">
@@ -52,7 +52,7 @@ export function InstagramSection() {
                   <p className="text-sm text-ink-600">{site.fullName}</p>
                 </div>
               </div>
-              <p className="eyebrow mt-7 text-[0.68rem] text-brand-700" aria-hidden="true">
+              <p className="eyebrow mt-7 text-brand-700" aria-hidden="true">
                 What you will find there
               </p>
               <ul className="mt-3 grid gap-2 sm:grid-cols-2" aria-hidden="true">

@@ -43,3 +43,8 @@ next-env.d.ts
 # Raw source photos and the photographer email thread (kept out of git; web-sized copies live in public/)
 /Headshots/
 /Event, Bonding, & Activities Photos/
+
+# Design-reference screenshots/images dropped at the project root for Claude
+# to look at — not website assets, never meant to be committed.
+/Screenshot*.png
+/images.jpg

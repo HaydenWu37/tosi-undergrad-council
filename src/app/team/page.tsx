@@ -26,10 +26,10 @@ export default function TeamPage() {
 
   return (
     <>
-      <PageHero eyebrow="The Council" title="Meet the team." seed={25}>
+      <PageHero eyebrow="The Council" title="Meet the team." seed={25} scene="cluster">
         The undergraduates who organize events, run Journal Club, and welcome new members.
       </PageHero>
-      <Section labelledBy="team-list" className="!pt-10 sm:!pt-14">
+      <Section labelledBy="team-list" className="bg-paper-50 !pt-10 sm:!pt-14">
         <Container>
           <Reveal>
             <figure className="relative mb-14 overflow-hidden rounded-3xl bg-ink-900 shadow-soft">
@@ -51,7 +51,7 @@ export default function TeamPage() {
               <section key={g.name} aria-labelledby={slug(g.name)}>
                 <h3
                   id={slug(g.name)}
-                  className="font-hand border-b border-paper-300 pb-2 text-4xl text-brand-500 sm:text-5xl"
+                  className="font-display border-b border-paper-300 pb-2 text-4xl italic text-brand-500 sm:text-5xl"
                 >
                   {g.name}
                 </h3>

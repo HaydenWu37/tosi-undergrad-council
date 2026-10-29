@@ -28,18 +28,21 @@ export function SectionHeader({
     >
       <div className={align === "center" ? "mx-auto max-w-2xl" : "max-w-2xl"}>
         {eyebrow && (
-          <p className={`eyebrow mb-3 ${dark ? "text-brand-200" : "text-brand-700"}`}>
+          <p
+            className={`eyebrow mb-3 flex items-center gap-2 ${align === "center" ? "justify-center" : ""} ${dark ? "text-signal-300" : "text-signal-500"}`}
+          >
+            <span aria-hidden="true">{"//"}</span>
             {eyebrow}
           </p>
         )}
         <Heading
           id={id}
-          className={`text-3xl sm:text-4xl lg:text-[2.7rem] ${dark ? "text-white" : "text-ink-950"}`}
+          className={`text-4xl sm:text-5xl lg:text-6xl ${dark ? "text-white" : "text-ink-950"}`}
         >
           {title}
         </Heading>
         {children && (
-          <p className={`mt-4 text-lg leading-relaxed ${dark ? "text-ink-400" : "text-ink-600"}`}>
+          <p className={`mt-4 max-w-xl text-lg normal-case leading-relaxed ${dark ? "text-ink-400" : "text-ink-600"}`}>
             {children}
           </p>
         )}

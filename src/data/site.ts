@@ -14,9 +14,9 @@ export const site = {
   affiliationLine: "Open science at The Neuro and across McGill",
 
   tagline:
-    "Connecting undergraduate students through neuroscience, research, and community.",
+    "Connecting undergraduate students through open science, research, and community.",
   description:
-    "The TOSI Undergraduate Council brings undergraduates into the TOSI trainee community through journal clubs, research talks, workshops, and open science.",
+    "The TOSI Undergraduate Council brings undergraduates into the TOSI trainee community through events, research talks, and open science practices.",
 
   /** Your public domain, used for sitemap and social previews. */
   url: "https://tosi-undergrad.example",
@@ -76,28 +76,18 @@ export interface NavItem {
 export const navLinks: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  {
-    href: "/events",
-    label: "Events",
-    children: [
-      { href: "/events", label: "All events", description: "Talks, workshops, and socials" },
-      { href: "/events/journal-club", label: "Journal Club", description: "Monthly research talks" },
-    ],
-  },
+  { href: "/events", label: "Events" },
   { href: "/team", label: "Team" },
-  { href: "/resources", label: "Resources" },
 ];
 
 export const footerLinks = {
   Explore: [
     { href: "/about", label: "About" },
     { href: "/events", label: "Events" },
-    { href: "/events/journal-club", label: "Journal Club" },
     { href: "/team", label: "Team" },
   ],
   Participate: [
     { href: "/get-involved", label: "Get Involved" },
-    { href: "/resources", label: "Resources" },
     { href: "/contact", label: "Contact" },
   ],
 };

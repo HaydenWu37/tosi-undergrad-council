@@ -16,7 +16,7 @@ const topics = [
 ];
 
 const field =
-  "mt-2 w-full rounded-xl border border-paper-300 bg-white px-4 py-3 text-ink-950 placeholder:text-ink-400 transition-colors hover:border-ink-400 focus:border-brand-600";
+  "mt-2 w-full rounded-xl border border-paper-300 bg-white px-4 py-3 text-ink-950 placeholder:text-ink-500 transition-colors hover:border-ink-400 focus:border-brand-600";
 
 export function ContactForm() {
   const params = useSearchParams();

@@ -106,6 +106,10 @@ export const team: TeamMember[] = [
 
 /** Group photos used on the Team page and homepage. */
 export const groupPhotos = {
+  committee: {
+    src: "/team/committee.jpg",
+    alt: "The TOSI Undergraduate Council standing together in front of the Arts Building, with autumn trees behind them",
+  },
   stairs: {
     src: "/team/council-stairs.jpg",
     alt: "Members of the TOSI Undergraduate Council posed together on the steps outside McGill's Arts Building",

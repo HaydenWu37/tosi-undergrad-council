@@ -16,7 +16,7 @@ export const intro = {
 
 export const mission = {
   statement:
-    "To make neuroscience research welcoming, open, and within reach for every undergraduate who is curious about it.",
+    "To make open science welcoming, transparent, and within reach for every undergraduate who is curious about research.",
   note: "Draft mission statement. Replace with the council's official wording.",
 };
 
@@ -29,16 +29,10 @@ export interface Pillar {
 
 export const pillars: Pillar[] = [
   {
-    id: "neuroscience",
-    title: "Neuroscience",
-    icon: "brain",
-    text: "Explore how the brain works, from cells and circuits to cognition and disease.",
-  },
-  {
     id: "research",
     title: "Research",
     icon: "microscope",
-    text: "Learn how research is done and find your way into a lab.",
+    text: "Learn how research is done, how it is shared openly, and find your way into a lab.",
   },
   {
     id: "education",
@@ -52,11 +46,17 @@ export const pillars: Pillar[] = [
     icon: "users",
     text: "Meet peers, trainees, and mentors who share your interests.",
   },
+  {
+    id: "neuroscience",
+    title: "Neuroscience",
+    icon: "brain",
+    text: "TOSI is based at The Neuro, so much of our community's research is neuroscience, explored in the open.",
+  },
 ];
 
 /** Goals shown on the About page. Add, remove, or reorder freely. */
 export const goals = [
-  "Introduce undergraduates to neuroscience research and open science practices.",
+  "Introduce undergraduates to research and open science practices.",
   "Create regular, low-pressure spaces to hear about research and open science.",
   "Connect undergraduates with trainees, researchers, and speakers.",
   "Point students toward research, career, and graduate-school opportunities.",
@@ -67,26 +67,26 @@ export const goals = [
 export const whatWeDo: { title: string; text: string; icon: IconName; href: string }[] = [
   {
     title: "Host events",
-    text: "Research talks, workshops, and socials designed for undergraduates.",
+    text: "Research talks, journal clubs, workshops, and socials designed for undergraduates.",
     icon: "calendar",
     href: "/events",
   },
   {
-    title: "Run Journal Club",
-    text: "A monthly talk where speakers share their research and open science practices.",
-    icon: "book",
-    href: "/events/journal-club",
-  },
-  {
-    title: "Share opportunities",
-    text: "Curated research, career, and graduate-school resources.",
+    title: "Practice open science",
+    text: "Share open science practices, from preprints to reproducible methods, in plain language.",
     icon: "compass",
-    href: "/resources",
+    href: "/about",
   },
   {
     title: "Build community",
     text: "Bring undergraduates and TOSI trainees together.",
     icon: "users",
     href: "/get-involved",
+  },
+  {
+    title: "Showcase our work",
+    text: "A record of the talks, workshops, and socials our community has run.",
+    icon: "book",
+    href: "/events",
   },
 ];

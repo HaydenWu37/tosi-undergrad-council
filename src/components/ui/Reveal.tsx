@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Fades and lifts children into view once as they scroll on-screen.
- * Content renders visible on the server, so nothing is hidden without JS;
+ * Fades and lifts children into view once as they scroll on-screen. Plain
+ * CSS transition + IntersectionObserver, no animation library. Content
+ * renders visible on the server, so nothing is hidden without JS;
  * off-screen items are hidden right after hydration, then revealed.
  */
 export function Reveal({

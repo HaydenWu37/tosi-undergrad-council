@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PathwayCard } from "@/components/cards/PathwayCard";
 import { Container, Section } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { CTASection } from "@/components/sections/CTASection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Button } from "@/components/ui/Button";
 import { pathways } from "@/data/involvement";
@@ -15,11 +16,11 @@ export const metadata: Metadata = {
 export default function GetInvolvedPage() {
   return (
     <>
-      <PageHero eyebrow="Get involved" title="Find your way in." seed={31}>
+      <PageHero eyebrow="Get involved" title="Find your way in." seed={31} scene="neuron">
         Whether you have five minutes or a full term, there is a way to take part. Pick a starting
         point below.
       </PageHero>
-      <Section labelledBy="pathways-heading">
+      <Section labelledBy="pathways-heading" className="bg-paper-50">
         <Container>
           <h2 id="pathways-heading" className="sr-only">Ways to get involved</h2>
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -44,6 +45,12 @@ export default function GetInvolvedPage() {
           </ul>
         </Container>
       </Section>
+      <CTASection
+        title="Still deciding?"
+        text="Come to anything, no sign-up required. The easiest way in is just to show up."
+        primary={{ label: "See our events", href: "/events" }}
+        secondary={{ label: "Meet the team", href: "/team" }}
+      />
     </>
   );
 }

@@ -1,82 +1,77 @@
 import type { Metadata } from "next";
-import { EventCard } from "@/components/cards/EventCard";
 import { Container, Section } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { CTASection } from "@/components/sections/CTASection";
 import { EventsBrowser } from "@/components/sections/EventsBrowser";
+import { InstagramSection } from "@/components/sections/InstagramSection";
 import { PageHero } from "@/components/sections/PageHero";
-import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { events } from "@/data/events";
-import { journalClubInfo } from "@/data/journalClub";
 import { splitEvents } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Events",
-  description: "Journal clubs, research talks, workshops, and socials for undergraduates.",
+  description: "A record of the journal clubs, research talks, workshops, and socials TOSI's Undergraduate Council has run.",
 };
 
 export const revalidate = 3600;
 
+const activities = [
+  { title: "Journal Club", icon: "book" as const, text: "A monthly talk where speakers share their research and open science practices." },
+  { title: "Research Talks", icon: "presentation" as const, text: "Researchers and trainees share their work and how they got started." },
+  { title: "Workshops", icon: "compass" as const, text: "Hands-on sessions on practical research and open science skills." },
+  { title: "Socials", icon: "users" as const, text: "Relaxed, low-pressure ways to meet the community." },
+];
+
 export default function EventsPage() {
-  const { upcoming, past } = splitEvents(events);
-  const featured = upcoming.find((e) => e.featured);
-  const rest = upcoming.filter((e) => e.id !== featured?.id);
+  const { past } = splitEvents(events);
 
   return (
     <>
-      <PageHero eyebrow="Events" title="Come learn something, meet someone." seed={14}>
-        Journal clubs, research talks, workshops, and socials. Everything is designed with
-        undergraduates in mind.
+      <PageHero eyebrow="What we do" title="Come learn something, meet someone." seed={14} scene="molecule">
+        A record of the journal clubs, research talks, workshops, and socials we&rsquo;ve run — and
+        where to hear about what&rsquo;s next.
       </PageHero>
 
-      {featured && (
-        <Section labelledBy="featured-heading" className="!pb-0">
-          <Container>
-            <Reveal>
-              <SectionHeader id="featured-heading" eyebrow="Featured" title="Next up" />
-              <div className="mt-8">
-                <EventCard event={featured} featured />
-              </div>
-            </Reveal>
-          </Container>
-        </Section>
-      )}
-
-      <Section labelledBy="jc-feature-heading" className="!pb-0">
+      <Section labelledBy="activities-heading" className="border-b border-paper-300 bg-paper-100">
         <Container>
           <Reveal>
-            <div className="relative overflow-hidden rounded-3xl bg-brand-100 p-8 sm:p-12">
-              <div aria-hidden="true" className="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-mint-100" />
-              <div className="relative grid items-center gap-8 lg:grid-cols-[auto_1fr_auto]">
-                <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-brand-700 shadow-soft">
-                  <Icon name="presentation" className="h-8 w-8" />
-                </span>
-                <div>
-                  <p className="eyebrow text-brand-800">Monthly series</p>
-                  <h2 id="jc-feature-heading" className="mt-1 text-3xl text-ink-950 sm:text-4xl">
-                    Journal Club
-                  </h2>
-                  <p className="mt-3 max-w-2xl text-ink-700">{journalClubInfo.what}</p>
-                </div>
-                <Button href="/events/journal-club" size="lg" arrow>
-                  Explore Journal Club
-                </Button>
-              </div>
-            </div>
+            <SectionHeader id="activities-heading" eyebrow="The kinds of events we run" title="Our activities" />
           </Reveal>
+          <ul className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {activities.map((a) => (
+              <li key={a.title} className="border-t-2 border-signal-400 pt-5">
+                <Icon name={a.icon} className="h-7 w-7 text-signal-500" />
+                <h3 className="mt-4 text-2xl text-ink-950">{a.title}</h3>
+                <p className="mt-2 normal-case text-ink-600">{a.text}</p>
+              </li>
+            ))}
+          </ul>
         </Container>
       </Section>
 
-      <Section labelledBy="all-heading">
-        <Container>
-          <SectionHeader id="all-heading" eyebrow="Calendar" title="All events" />
+      {/* A second navy moment on this page — real event photography on
+          deep navy, the same treatment the homepage's "Recent moments"
+          uses, so the past-events archive itself feels like part of the
+          cinematic world rather than a plain filtered list. */}
+      <Section labelledBy="past-heading" id="past" className="on-dark relative overflow-hidden bg-ink-950">
+        <div aria-hidden="true" className="grain absolute inset-0 opacity-[0.06]" />
+        <Container className="relative">
+          <Reveal>
+            <SectionHeader id="past-heading" eyebrow="What we've done" title="Past events" tone="dark" />
+          </Reveal>
           <div className="mt-8">
-            <EventsBrowser upcoming={rest} past={past} />
+            <EventsBrowser past={past} dark />
           </div>
         </Container>
       </Section>
+
+      {/* We don't run a live event calendar here — Instagram is the
+          channel for what's coming up next (see the brief: "Remove the
+          emphasis on upcoming-event listings... visitors should follow
+          Instagram to stay informed"). */}
+      <InstagramSection />
 
       <CTASection
         title="Want to host or speak?"

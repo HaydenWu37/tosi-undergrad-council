@@ -7,8 +7,11 @@ import { CategoryBadge } from "@/components/ui/Badge";
 import { eventPhotoSrc, formatLongDate } from "@/lib/format";
 import type { EventItem } from "@/lib/types";
 
-/** Photo-led card for a finished event. Click to open the full gallery. */
-export function PastEventCard({ event }: { event: EventItem }) {
+/** Photo-led card for a finished event. Click to open the full gallery.
+ *  `dark` swaps the caption text for a navy-panel-legible variant — the
+ *  photo thumbnail itself (gradient + white overlay text) already works on
+ *  either background. */
+export function PastEventCard({ event, dark = false }: { event: EventItem; dark?: boolean }) {
   const [open, setOpen] = useState(false);
   const photos = event.photos ?? [];
   if (photos.length === 0) return null;
@@ -20,14 +23,14 @@ export function PastEventCard({ event }: { event: EventItem }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        className="relative block aspect-[4/3] w-full overflow-hidden rounded-2xl bg-ink-900 text-left shadow-soft transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lift"
+        className="relative block aspect-[4/3] w-full overflow-hidden rounded-3xl bg-ink-900 text-left shadow-soft transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-lift"
       >
         <Image
           src={eventPhotoSrc(event, photos[0])}
           alt={alt}
           fill
           sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
         <span
           aria-hidden="true"
@@ -38,7 +41,7 @@ export function PastEventCard({ event }: { event: EventItem }) {
         </span>
         <span className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3 text-white">
           <span className="font-display text-xl leading-tight sm:text-2xl">{event.title}</span>
-          <span className="eyebrow flex shrink-0 items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[0.65rem] backdrop-blur-sm">
+          <span className="eyebrow flex shrink-0 items-center gap-1.5 rounded-full border border-white/40 bg-black/20 px-2.5 py-1 backdrop-blur-sm">
             <Images className="h-3.5 w-3.5" aria-hidden="true" />
             {photos.length}
           </span>
@@ -47,8 +50,10 @@ export function PastEventCard({ event }: { event: EventItem }) {
           View {photos.length} {photos.length === 1 ? "photo" : "photos"} from {event.title}
         </span>
       </button>
-      <p className="mt-3 px-1 text-sm text-ink-600">
-        {event.date && <span className="mr-1 font-medium text-ink-800">{formatLongDate(event.date)}.</span>}
+      <p className={`mt-3 px-1 text-sm ${dark ? "text-ink-400" : "text-ink-600"}`}>
+        {event.date && (
+          <span className={`mr-1 font-medium ${dark ? "text-white" : "text-ink-800"}`}>{formatLongDate(event.date)}.</span>
+        )}
         {event.description}
       </p>
       {open && <Lightbox event={event} alt={alt} onClose={() => setOpen(false)} />}
@@ -88,7 +93,7 @@ function Lightbox({ event, alt, onClose }: { event: EventItem; alt: string; onCl
       <div className="on-dark flex items-center justify-between gap-4 px-5 py-3">
         <div className="min-w-0">
           <p className="truncate font-display text-lg">{event.title}</p>
-          <p className="eyebrow text-[0.65rem] text-ink-400" aria-live="polite">
+          <p className="eyebrow text-ink-400" aria-live="polite">
             Photo {i + 1} of {photos.length}
           </p>
         </div>

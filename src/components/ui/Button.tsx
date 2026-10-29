@@ -1,28 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { isExternal } from "@/lib/format";
 
 type Variant = "primary" | "secondary" | "ghost" | "inverse" | "outlineInverse";
 
 const base =
-  "group inline-flex items-center justify-center gap-2 rounded-full font-medium " +
-  "transition-[background-color,color,border-color,box-shadow,transform] duration-200 " +
-  "focus-visible:outline-offset-4 active:translate-y-px";
+  "group relative inline-flex min-h-11 items-center justify-center gap-2 rounded-full font-medium " +
+  "transition-[transform,box-shadow,filter,background-color,color,border-color] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] " +
+  "hover:shadow-lift hover:brightness-105 active:scale-[0.98] focus-visible:outline-offset-4";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-brand-700 text-white hover:bg-brand-800 shadow-soft hover:shadow-lift",
-  secondary:
-    "border border-ink-900/25 text-ink-900 hover:border-ink-900 hover:bg-ink-900 hover:text-white",
-  ghost: "text-brand-700 hover:text-brand-900 px-0",
-  inverse: "bg-signal-400 text-ink-950 hover:bg-signal-300",
-  outlineInverse:
-    "border border-white/40 text-white hover:border-white hover:bg-white hover:text-ink-950",
+  primary: "bg-signal-500 text-white shadow-glow",
+  secondary: "border border-ink-950/15 text-ink-950 hover:bg-paper-100",
+  ghost: "text-signal-500 hover:text-signal-700",
+  inverse: "bg-white text-signal-500 shadow-soft",
+  outlineInverse: "border border-white/40 text-white hover:bg-white/10",
 };
 
 const sizes = {
-  md: "px-5 py-2.5 text-sm",
-  lg: "px-7 py-3.5 text-base",
+  md: "px-6 py-3 text-sm",
+  lg: "px-8 py-4 text-base",
 };
 
 interface ButtonProps {
@@ -37,6 +37,42 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
+/** A gentle "magnetic" pull toward the cursor, within the button's own
+ *  bounds — not a dramatic effect, just enough to feel alive. Pill-shaped
+ *  buttons are the site's one truly interactive object on most screens, so
+ *  this is where that "delightful" budget is best spent, rather than
+ *  sprinkled everywhere. Skipped on touch (no sustained hover to respond
+ *  to) and under reduced-motion. Native `addEventListener` in an effect
+ *  (not JSX handler props) so no ref is ever read during render. */
+function useMagnetic(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (
+      !window.matchMedia("(pointer: fine)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const dx = e.clientX - (rect.left + rect.width / 2);
+      const dy = e.clientY - (rect.top + rect.height / 2);
+      el.style.transform = `translate(${dx * 0.22}px, ${dy * 0.32}px) scale(1.04)`;
+    };
+    const onMouseLeave = () => {
+      el.style.transform = "";
+    };
+    el.addEventListener("mousemove", onMouseMove);
+    el.addEventListener("mouseleave", onMouseLeave);
+    return () => {
+      el.removeEventListener("mousemove", onMouseMove);
+      el.removeEventListener("mouseleave", onMouseLeave);
+    };
+  }, [ref]);
+}
+
 export function Button({
   href,
   variant = "primary",
@@ -46,7 +82,9 @@ export function Button({
   children,
   ...rest
 }: ButtonProps) {
-  const cls = `${base} ${variants[variant]} ${variant === "ghost" ? "" : sizes[size]} ${className}`;
+  const ref = useRef<HTMLElement | null>(null);
+  useMagnetic(ref);
+  const cls = `${base} ${variants[variant]} ${variant === "ghost" ? "px-0 py-0" : sizes[size]} ${className}`;
   const external = href ? isExternal(href) : false;
   const Arrow = external ? ArrowUpRight : ArrowRight;
   const content = (
@@ -64,17 +102,18 @@ export function Button({
 
   if (href) {
     return external ? (
-      <a href={href} className={cls} target="_blank" rel="noopener noreferrer">
+      <a ref={ref as React.Ref<HTMLAnchorElement>} href={href} className={cls} target="_blank" rel="noopener noreferrer">
         {content}
       </a>
     ) : (
-      <Link href={href} className={cls}>
+      <Link ref={ref as React.Ref<HTMLAnchorElement>} href={href} className={cls}>
         {content}
       </Link>
     );
   }
   return (
     <button
+      ref={ref as React.Ref<HTMLButtonElement>}
       type={rest.type ?? "button"}
       onClick={rest.onClick}
       disabled={rest.disabled}

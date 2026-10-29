@@ -1,4 +1,3 @@
-import { NeuralField } from "@/components/graphics/NeuralField";
 import { PlaceholderTag } from "@/components/ui/Badge";
 import { Container, Section } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
@@ -9,21 +8,18 @@ import { site } from "@/data/site";
 export function MissionSection() {
   return (
     <Section labelledBy="mission-heading" className="on-dark relative overflow-hidden bg-ink-950">
-      <NeuralField className="text-brand-300 opacity-[0.18]" seed={5} cols={14} rows={8} />
+      <div aria-hidden="true" className="grain absolute inset-0 opacity-[0.06]" />
       <Container className="relative">
         <Reveal>
-          <p className="eyebrow text-brand-200">Our mission</p>
+          <p className="eyebrow flex items-center gap-2 text-signal-300">
+            <span aria-hidden="true">{"//"}</span>
+            Our mission
+          </p>
           <h2 id="mission-heading" className="sr-only">
             Our Mission
           </h2>
-          <blockquote className="mt-5 max-w-4xl font-display text-3xl leading-[1.2] text-white sm:text-5xl">
-            <span className="text-signal-400" aria-hidden="true">
-              “
-            </span>
-            {mission.statement}
-            <span className="text-signal-400" aria-hidden="true">
-              ”
-            </span>
+          <blockquote className="font-display mt-5 max-w-4xl text-3xl normal-case leading-[1.2] text-white sm:text-5xl">
+            <em>“{mission.statement}”</em>
           </blockquote>
           {site.showPlaceholderNotices && (
             <p className="mt-5 flex items-center gap-2 text-sm text-ink-400">
@@ -32,15 +28,15 @@ export function MissionSection() {
           )}
         </Reveal>
 
-        <ul className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p, i) => (
-            <Reveal as="li" key={p.id} delay={i * 80} className="bg-ink-950/90 p-7 backdrop-blur-sm">
-              <div className="flex items-center justify-between text-brand-300">
+            <Reveal as="li" key={p.id} delay={i * 80} className="glass rounded-3xl border border-white/10 p-7">
+              <div className="flex items-center justify-between text-signal-300">
                 <Icon name={p.icon} className="h-7 w-7" />
                 <span className="font-mono text-xs text-ink-500">0{i + 1}</span>
               </div>
               <h3 className="mt-6 text-2xl text-white">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-400">{p.text}</p>
+              <p className="mt-2 text-sm normal-case leading-relaxed text-ink-400">{p.text}</p>
             </Reveal>
           ))}
         </ul>
